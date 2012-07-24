@@ -138,7 +138,7 @@ a.button {
   padding-top: 22px;
   font-family: 'Architects Daughter', 'Helvetica Neue', Helvetica, Arial, serif; 
 }
-a.button small {
+a.button small, a.clever-button small {
   display: block;
   font-size: 11px;
 }
@@ -470,6 +470,17 @@ footer a:hover {
     padding-right: 0;
     margin-left: 0;
   }
+}
+
+.center{
+  text-align: center;
+}
+
+.clever-button{
+  display: block;
+  font-size: 21px;
+  line-height: 1.2;
+  color: #474747;
 }
 
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
