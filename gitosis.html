@@ -33,36 +33,33 @@
 
 <p>L'installation de Gitosis n'est pas des plus aisées. Elle est plus simple sur un serveur Linux — les exemples qui suivent utilisent une distribution Ubuntu Server 8.10 de base.</p>
 
-<p>Gitosis nécessite des outils Python. Il faut donc installer le paquet Python setuptools. Sous Ubuntu, il est fournit en tant que python-setuptools :
+<p>Gitosis nécessite des outils Python. Il faut donc installer le paquet Python setuptools. Sous Ubuntu, il est fournit en tant que python-setuptools: <br />
 <code>$ apt-get install python-setuptools</code>
 </p>
 
-<p>Ensuite, il faut cloner et installer Gitosis à partir du site principal du projet :</p>
+<p>Ensuite, il faut cloner et installer Gitosis à partir du site principal du projet : <br />
 <code>$ git clone git://eagain.net/gitosis.git <br/>
 $ cd gitosis <br/>
-$ sudo python setup.py install</code>
+$ sudo python setup.py install</code></p>
 
-          <p>Gitosis est une collection de scripts qui aident à gérer le fichier <code>authorized_keys</code> ainsi qu'à implémenter des contrôles d'accès simples. La partie la plus intéressante de l'outil repose sur le fait que l'interface d'administration permettant d'ajouter des utilisateurs et de déterminer leurs droits n'est pas une interface web mais un dépôt Git. Pour paramétrer les informations relatives à un projet, il suffit de pousser vos modifications, et Gitosis reconfigure les serveurs en fonction des données.</p>
+<p>Gitosis est une collection de scripts qui aident à gérer le fichier <code>authorized_keys</code> ainsi qu'à implémenter des contrôles d'accès simples. La partie la plus intéressante de l'outil repose sur le fait que l'interface d'administration permettant d'ajouter des utilisateurs et de déterminer leurs droits n'est pas une interface web mais un dépôt Git. Pour paramétrer les informations relatives à un projet, il suffit de pousser vos modifications, et Gitosis reconfigure les serveurs en fonction des données.</p>
 
 <p>L'installation de Gitosis n'est pas des plus aisées. Elle est plus simple sur un serveur Linux — les exemples qui suivent utilisent une distribution Ubuntu Server 8.10 de base.</p>
 
-<p>Gitosis nécessite des outils Python. Il faut donc installer le paquet Python setuptools. Sous Ubuntu, il est fournit en tant que python-setuptools :
-</p>
-<div><code>$ apt-get install python-setuptools</code></div>
+<p>Gitosis nécessite des outils Python. Il faut donc installer le paquet Python setuptools. Sous Ubuntu, il est fournit en tant que python-setuptools : <br />
+<code>$ apt-get install python-setuptools</code></p>
 
-<p>Ensuite, il faut cloner et installer Gitosis à partir du site principal du projet :</p>
-<div><code>$ git clone git://eagain.net/gitosis.git <br />
+<p>Ensuite, il faut cloner et installer Gitosis à partir du site principal du projet :<br />
+<code>$ git clone git://eagain.net/gitosis.git <br />
 $ cd gitosis <br />
-$ sudo python setup.py install</code></div>
+$ sudo python setup.py install</code></p>
 
 <p>La dernière commande installe deux exécutables que Gitosis utilisera. <br />
-  Par défaut, Gitosis gère ses dépôts sous <code>/home/git</code>, ce qui est parfait, sauf si vous avez déjà installé vos dépôts autre part. Dans ce cas précis, il suffit de créer un lien symbolique.</p>
+  Par défaut, Gitosis gère ses dépôts sous <code>/home/git</code>, ce qui est parfait, sauf si vous avez déjà installé vos dépôts autre part. Dans ce cas précis, il suffit de créer un lien symbolique.<br />
+<code>$ ln -s /opt/git /home/git/repositories</code></p>
 
-<div><code>$ ln -s /opt/git /home/git/repositories</code></div>
-
-<p>Comme Gitosis s'occupe de gérer les clés SSH pour vous, plus besoin du fichier <code>authorized_keys</code>. Afin de ne pas le supprimer complètement pour le moment, déplacez le fichier <code>authorized_keys</code> ailleurs : </p>
-
-<div><code>$ mv /home/git/.ssh/authorized_keys /home/git/.ssh/ak.bak</code></div>
+<p>Comme Gitosis s'occupe de gérer les clés SSH pour vous, plus besoin du fichier <code>authorized_keys</code>. Afin de ne pas le supprimer complètement pour le moment, déplacez le fichier <code>authorized_keys</code> ailleurs : <br />
+<code>$ mv /home/git/.ssh/authorized_keys /home/git/.ssh/ak.bak</code></p>
 
 <p>Avant de continuer, assurez-vous que :
 <ul> 
@@ -70,31 +67,30 @@ $ sudo python setup.py install</code></div>
   <li>Votre clé publique est bien présente sur le serveur. L'utilisateur correspondant à la clé publique que l'on utilisera sera le seul à pouvoir paramétrer Gitosis.</li>
 </ul></p>
 
-<p>Vous pouvez maintenant initialiser Gitosis en lançant la commande <code>gitosis-init</code> avec votre clef publique.</p>
+<p>Vous pouvez maintenant initialiser Gitosis en lançant la commande <code>gitosis-init</code> avec votre clef publique.<br />
+<code>$ sudo -H -u git gitosis-init < /tmp/id_dsa.pub</code></p>
 
-<div><code>$ sudo -H -u git gitosis-init < /tmp/id_dsa.pub</code></div>
-
-<p>Ensuite, changez les droits du script <code>post-update</code> du dépôt de contrôle nouvellement créé :</p>
-
-<div><code>$ sudo chmod 755 /opt/git/gitosis-admin.git/hooks/post-update</code></div>
+<p>Ensuite, changez les droits du script <code>post-update</code> du dépôt de contrôle nouvellement créé :<br />
+<code>$ sudo chmod 755 /opt/git/gitosis-admin.git/hooks/post-update</code></p>
 
 <p>Si tout a fonctionné correctement, essayez de vous connecter par SSH au serveur en utilisant la commande <code>$ ssh git@gitserveur</code>, où git est l'utilisateur pour lequel vous avez configurer Gitosis, et gitserver l'url de votre serveur. <br />
-Vous devriez voir quelque chose comme :</p>
+Vous devriez voir quelque chose comme :<br />
 
 <code>
 PTY allocation request failed on channel 0 <br />
   fatal: unrecognized command 'gitosis-serve jfemia@clever-pc' <br />
-Connection to gitserver closed.</code>
+Connection to gitserver closed.</code></p>
 
 <p>Cela signifie que Gitosis vous a bien reconnu mais vous a rejeté car vous ne lancez pas de commandes Git. <br /> 
-  Lançons donc une vraie commande Git en clonant le dépôt de contrôle Gitosis : </p>
+  Lançons donc une vraie commande Git en clonant le dépôt de contrôle Gitosis :<br />
 
-<div><code>$ git clone git@gitserver:gitosis-admin.git</code></div>
+<code>$ git clone git@gitserver:gitosis-admin.git</code></p>
+
 <p>En regardant ce que l'on vient de cloner de plus près, on a donc :
 
 <ul>
-  <li>Un fichier <code>gitosis.conf, qui permet de spécifier les utilisateurs, les dépôts et les permissions</code></li>
-  <li>un répertoire <code>keydir</code> qui contient les clés publiques de tous les utilisateurs qui peuvent avoir accès à vos dépôts</li>
+  <li>Un fichier <code>gitosis.conf</code>, qui permet de spécifier les utilisateurs, les dépôts et les permissions</li>
+  <li>un répertoire <code>keydir</code> qui contient les clés publiques de tous les utilisateurs qui peuvent avoir accès à vos dépôts.</li>
 </ul>
 </p>
         </section>
