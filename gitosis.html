@@ -38,9 +38,9 @@
 </p>
 
 <p>Ensuite, il faut cloner et installer Gitosis à partir du site principal du projet :</p>
-<code>$ git clone git://eagain.net/gitosis.git</code>
-<code>$ cd gitosis</code>
-<code>$ sudo python setup.py install</code>
+<code>$ git clone git://eagain.net/gitosis.git <br/>
+$ cd gitosis <br/>
+$ sudo python setup.py install</code>
 
           <p>Gitosis est une collection de scripts qui aident à gérer le fichier <code>authorized_keys</code> ainsi qu'à implémenter des contrôles d'accès simples. La partie la plus intéressante de l'outil repose sur le fait que l'interface d'administration permettant d'ajouter des utilisateurs et de déterminer leurs droits n'est pas une interface web mais un dépôt Git. Pour paramétrer les informations relatives à un projet, il suffit de pousser vos modifications, et Gitosis reconfigure les serveurs en fonction des données.</p>
 
@@ -51,8 +51,8 @@
 <div><code>$ apt-get install python-setuptools</code></div>
 
 <p>Ensuite, il faut cloner et installer Gitosis à partir du site principal du projet :</p>
-<div><code>$ git clone git://eagain.net/gitosis.git
-$ cd gitosis
+<div><code>$ git clone git://eagain.net/gitosis.git <br />
+$ cd gitosis <br />
 $ sudo python setup.py install</code></div>
 
 <p>La dernière commande installe deux exécutables que Gitosis utilisera. <br />
@@ -81,10 +81,10 @@ $ sudo python setup.py install</code></div>
 <p>Si tout a fonctionné correctement, essayez de vous connecter par SSH au serveur en utilisant la commande <code>$ ssh git@gitserveur</code>, où git est l'utilisateur pour lequel vous avez configurer Gitosis, et gitserver l'url de votre serveur. <br />
 Vous devriez voir quelque chose comme :</p>
 
-<div><code>
-PTY allocation request failed on channel 0
-  fatal: unrecognized command 'gitosis-serve jfemia@clever-pc'
-Connection to gitserver closed.</code></div>
+<code>
+PTY allocation request failed on channel 0 <br />
+  fatal: unrecognized command 'gitosis-serve jfemia@clever-pc' <br />
+Connection to gitserver closed.</code>
 
 <p>Cela signifie que Gitosis vous a bien reconnu mais vous a rejeté car vous ne lancez pas de commandes Git. <br /> 
   Lançons donc une vraie commande Git en clonant le dépôt de contrôle Gitosis : </p>
