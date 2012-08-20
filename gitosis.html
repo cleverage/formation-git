@@ -29,6 +29,18 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h3>Installation de Gitosis</h3>
+          <p>Gitosis est une collection de scripts qui aident à gérer le fichier <code>authorized_keys</code> ainsi qu'à implémenter des contrôles d'accès simples. La partie la plus intéressante de l'outil repose sur le fait que l'interface d'administration permettant d'ajouter des utilisateurs et de déterminer leurs droits n'est pas une interface web mais un dépôt Git. Pour paramétrer les informations relatives à un projet, il suffit de pousser vos modifications, et Gitosis reconfigure les serveurs en fonction des données.</p>
+
+<p>L'installation de Gitosis n'est pas des plus aisées. Elle est plus simple sur un serveur Linux — les exemples qui suivent utilisent une distribution Ubuntu Server 8.10 de base.</p>
+
+<p>Gitosis nécessite des outils Python. Il faut donc installer le paquet Python setuptools. Sous Ubuntu, il est fournit en tant que python-setuptools :
+<code>$ apt-get install python-setuptools</code>
+</p>
+
+<p>Ensuite, il faut cloner et installer Gitosis à partir du site principal du projet :</p>
+<code>$ git clone git://eagain.net/gitosis.git</code>
+<code>$ cd gitosis</code>
+<code>$ sudo python setup.py install</code>
 
         </section>
 
