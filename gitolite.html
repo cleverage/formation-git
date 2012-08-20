@@ -30,16 +30,20 @@
         <section id="main-content">
           <h3>Installation de Gitolite</h3>
 
-<P>Pour installer Gitolite, vous n'avez besoin que d'un compte sur un serveur de type Unix; plusieurs distributions Linux et Solaris 10 sont compatibles.Vous n'avez pas besoin d'accès root si git, perl et un serveur compatible openssh sont déjà installés. <br/> Dans les exemples qui suivent, un compte gitolite sur un serveur gitserver sera utilisé.</p>
+<P>Pour installer Gitolite, vous n'avez besoin que d'un compte sur un serveur de type Unix; plusieurs distributions Linux et Solaris 10 sont compatibles Vous n'avez pas besoin d'accès root si git, perl et un serveur compatible openssh sont déjà installés.</p>
 
-<p>L'accès à Gitolite se fait via ssh et donc tout utilisateur du système est potentiellement un « hôte Gitolite ». De ce fait, il n'y a pas réellement d'installation du logiciel serveur ou de paramétrage utilisateur. Gitolite dispose de 4 méthodes d'installation. Les personnes utilisant Fedora ou Debian peuvent utiliser un paquet RPM ou DEB à installer. Les personnes disposant d'un accès root peuvent l'installer manuellement. Par ces deux méthodes, tout utilisateur du système peut ainsi devenir un « hôte gitolite ».<p/>
-
-<p>Gitolite peut également s'installer en lançant un script sur une station de travail, à partir d'un shell bash. Ici, c'est cette méthode d'installation que nous utiliserons.</p>
+<p>L'accès à Gitolite se fait via ssh et donc tout utilisateur du système est potentiellement un « hôte Gitolite ». De ce fait, il n'y a pas réellement d'installation du logiciel serveur ou de paramétrage utilisateur. Gitolite dispose de 4 méthodes d'installation :
+  <ul>
+    <li>Les personnes utilisant Fedora ou Debian peuvent utiliser un paquet RPM ou DEB à installer ;</li>
+    <li>Les personnes disposant d'un accès <code>root</code> peuvent l'installer manuellement. Par ces deux méthodes, tout utilisateur du système peut ainsi devenir un « hôte gitolite » ;</li> 
+    <li>Les personnes sans accès <code>root</code> peuvent l'installer avec leur propre utilisateur ;</li>
+    <li>Gitolite peut également s'installer en lançant un script sur une station de travail, à partir d'un shell bash. <em>Ici, c'est cette méthode d'installation que nous utiliserons.</em></li>
+<p/>
 
 <p>Avant de commencer, assurez-vous que vous possédez bien une clé publique pour l'utilisateur en cours. Si ce n'est pas le cas, générez-en une.</p>
-<p>Commençons par définir un accès par clé publique à notre serveur, de manière à pouvoir se connecter au serveur depuis notre station de travail sans passer par un mot de passe. Ceci est une étape essentielle du processus d'installation.<br />
+<p>Commençons par définir un accès par clé publique à notre serveur, de manière à pouvoir se connecter au serveur depuis notre station de travail sans passer par un mot de passe. <strong>Ceci est une étape essentielle du processus d'installation.</strong><br />
 
-<code>$ ssh-copy-id -i ~/.ssh/id_rsa gitolite@gitserver</code>
+<code>$ ssh-copy-id -i ~/.ssh/id_rsa gitolite@gitserver</code> <br />
 Après avoir entré le mot de passe pour le compte gitolite, il est conseillé de bien vérifier qu'on peut ensuite lancer la commande suivante sans obtenir une demande de mot de passe : <br />
 <code>$ ssh gitolite@gitserver pwd</code>
 </p>
