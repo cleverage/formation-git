@@ -30,6 +30,46 @@
         <section id="main-content">
           <h3>Installation de Gitolite</h3>
 
+<P>Pour installer Gitolite, vous n'avez besoin que d'un compte sur un serveur de type Unix; plusieurs distributions Linux et Solaris 10 sont compatibles.Vous n'avez pas besoin d'accès root si git, perl et un serveur compatible openssh sont déjà installés. <br/> Dans les exemples qui suivent, un compte gitolite sur un serveur gitserver sera utilisé.</p>
+
+<p>L'accès à Gitolite se fait via ssh et donc tout utilisateur du système est potentiellement un « hôte Gitolite ». De ce fait, il n'y a pas réellement d'installation du logiciel serveur ou de paramétrage utilisateur. Gitolite dispose de 4 méthodes d'installation. Les personnes utilisant Fedora ou Debian peuvent utiliser un paquet RPM ou DEB à installer. Les personnes disposant d'un accès root peuvent l'installer manuellement. Par ces deux méthodes, tout utilisateur du système peut ainsi devenir un « hôte gitolite ».<p/>
+
+<p>Gitolite peut également s'installer en lançant un script sur une station de travail, à partir d'un shell bash. Ici, c'est cette méthode d'installation que nous utiliserons.</p>
+
+<p>Avant de commencer, assurez-vous que vous possédez bien une clé publique pour l'utilisateur en cours. Si ce n'est pas le cas, générez-en une.</p>
+<p>Commençons par définir un accès par clé publique à notre serveur, de manière à pouvoir se connecter au serveur depuis notre station de travail sans passer par un mot de passe. Ceci est une étape essentielle du processus d'installation.<br />
+
+<code>$ ssh-copy-id -i ~/.ssh/id_rsa gitolite@gitserver</code>
+Après avoir entré le mot de passe pour le compte gitolite, il est conseillé de bien vérifier qu'on peut ensuite lancer la commande suivante sans obtenir une demande de mot de passe : <br />
+<code>$ ssh gitolite@gitserver pwd</code>
+</p>
+
+<p>Ensuite, clonons Gitolite depuis le site principal du projet et lançons le script <code>easy-install</code>. Le troisième argument est le nom que nous souhaitons avoir dans le dépôt gitolite-admin ainsi créé : <br />
+
+<code>$ git clone git://github.com/sitaramc/gitolite <br />
+$ cd gitolite/src <br />
+$ ./gl-easy-install -q gitolite gitserver sitaram</code>
+<br />
+
+C'est fini ! Gitolite est à présent installé sur le serveur ainsi qu'un nouveau dépôt appelé gitolite-admin dans le dossier personnel de la station de travail. L'administration de gitolite passe par des modifications dans ce dépôt.</p>
+
+<p>Les dépôts appelés gitolite-admin et testing sont créés par défaut sur le serveur. Si vous souhaitez cloner l'un d'eux localement (depuis un compte ayant un accès SSH console au compte gitolite via authorized_keys), il suffit de saisir :<br />
+<code>$ git clone gitolite:gitolite-admin <br />
+$ git clone gitolite:testing</code>
+
+<br />
+
+Pour cloner ces mêmes dépôts depuis n'importe quel compte : <br />
+<code>$ git clone gitolite@servername:gitolite-admin <br />
+$ git clone gitolite@servername:testing</code></p>
+
+<p>En regardant ce que l'on vient de cloner de plus près, on a donc :
+
+<ul>
+  <li>Un répertoire <code>conf</code>, qui permet de spécifier les utilisateurs, les dépôts, les branches, les tags, ainsi les permissions</li>
+  <li>un répertoire <code>keydir</code> qui contient les clés publiques des utilisateurs.</li>
+</ul>
+</p>
         </section>
 
         <aside id="sidebar">
