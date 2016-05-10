@@ -1,0 +1,12 @@
+# Reposotory : https://github.com/git/git/tree/master/contrib/completion
+source ~/.git-prompt.sh
+source ~/.git-completion.bash
+
+export PS1='\[\033[0;32m\][\t]\[\033[0;37m\] \u@\h:\w $(__git_ps1 " (%s)")\n\[\033[0;32m\]\$\[\033[0;37m\] '
+
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWUPSTREAM="verbose git"
+GIT_PS1_DESCRIBE_STYLE="branch"
+GIT_PS1_SHOWCOLORHINTS=1

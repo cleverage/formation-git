@@ -1,0 +1,26 @@
+[user]
+	name = ton_nom
+	email = ton@email.tld
+[color]
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+ 	interactive = auto	
+[alias]
+	lg = log --graph --pretty=tformat:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
+	last = log -1
+	wdiff = diff --color-words
+[core]
+	excludesfile = ~/.gitignore_global
+	editor = nano
+# Sous Windows ? Désolé... Utilisons Notepad++…
+#       editor = 'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin
+[credential]
+	helper = cache --timeout=360000
+[pull]
+	rebase = true
+[push]
+	default = simple
+[diff]
+	wordRegex = .
